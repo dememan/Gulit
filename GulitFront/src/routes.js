@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import User from "./pages/User";
 import NotFound from "./pages/Page404";
 
+import ProductDetail from './pages/ProductDetail';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -23,6 +24,7 @@ export default function Router() {
         { path: "app", element: <DashboardApp /> },
         { path: "user", element: <User /> },
         { path: "products", element: <Products /> },
+        { path: "products/:id", element: <ProductDetail/> },
         { path: "blog", element: <Blog /> },
       ],
     },

@@ -51,8 +51,8 @@ export default function EcommerceShop() {
   };
 
   const APIs = useContext(APIConfig);
-  //const productAPI = APIs.productAPI;
-  const productAPI = "http://172.19.143.222:8080/products/";
+  const productAPI = APIs.ProductAPI;
+
 
   const [productList, setProductList] = useState([
     {
@@ -98,8 +98,6 @@ export default function EcommerceShop() {
       });
   }
   useEffect(fetchProductsHandler, []); // This will be fetched when mounted
-
-  const productArray = Object.values(productList);
 
   return (
     <Page title="Dashboard: Products | Minimal-UI">

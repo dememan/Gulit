@@ -62,7 +62,7 @@ export default function Login() {
         <ContentStyle>
       
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Sign in
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>Enter your details below.</Typography>
         

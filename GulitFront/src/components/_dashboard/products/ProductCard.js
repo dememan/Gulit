@@ -1,13 +1,14 @@
-import PropTypes from "prop-types";
-import { Link as RouterLink } from "react-router-dom";
+import PropTypes, { checkPropTypes } from "prop-types";
+import { Link as RouterLink, Route } from "react-router-dom";
 // material
-import { Box, Card, Link, Typography, Stack } from "@mui/material";
+import { Box, Card, Link, Typography, Stack, Switch } from "@mui/material";
 import { styled } from "@mui/material/styles";
 // utils
 import { fCurrency } from "../../../utils/formatNumber";
 //
 import Label from "../../Label";
 import ColorPreview from "../../ColorPreview";
+import ProductDetail from "src/pages/ProductDetail";
 
 // ----------------------------------------------------------------------
 
@@ -53,7 +54,15 @@ export default function ShopProductCard({ product }) {
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink}>
+        <Link to={'' +id} color="inherit" underline="hover" component={RouterLink} >
+{/*         
+        <Link to={{ 
+  pathname: '' +id, 
+  search: `choosenDog=${JSON.stringify({ ...product })}`
+}}
+        
+color="inherit" underline="hover" component={RouterLink} > */}
+
           <Typography variant="subtitle2" noWrap>
             {name}
           </Typography>

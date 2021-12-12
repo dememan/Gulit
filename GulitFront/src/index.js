@@ -16,18 +16,21 @@ import { APIConfig } from "./store/Api-Config";
 const base = "http://172.19.143.222:8080/";
 
 ReactDOM.render(
-  <APIConfig.Provider
-    value={{
-      ProductAPI: base + "products/",
-      CardAPI: base + "cart/",
-    }}
-  >
+
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter> 
+       <APIConfig.Provider   value={
+         {
+      ProductAPI: base + "products/",
+      CardAPI: base + "cart/"
+    }
+    }
+  >
         <App />
+         </APIConfig.Provider>
       </BrowserRouter>
-    </HelmetProvider>
-  </APIConfig.Provider>,
+    </HelmetProvider>,
+ 
   document.getElementById("root")
 );
 
