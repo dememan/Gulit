@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.Size;
 
 @Table(name = "brand")
 @Data
@@ -16,12 +16,12 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class Brand {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Size(min = 2)
-    @NotEmpty
+    //@Size(min = 2)
+    //@NotEmpty
     private String name;
 
 }

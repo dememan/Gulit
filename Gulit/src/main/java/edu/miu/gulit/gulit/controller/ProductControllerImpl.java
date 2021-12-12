@@ -6,9 +6,9 @@ import edu.miu.gulit.gulit.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/products")
 public class ProductControllerImpl implements ProductController {
@@ -32,7 +32,7 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     @PostMapping
-    public Product save(@RequestBody @Valid Product data) {
+    public Product save(@RequestBody  Product data) {
         return service.save(data);
     }
 

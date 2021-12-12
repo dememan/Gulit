@@ -24,7 +24,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product save(Product product) {
-
         if(repository.existsById(product.getId())) {
             System.out.println("Product already registered");
             return null;

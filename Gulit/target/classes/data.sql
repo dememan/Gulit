@@ -28,3 +28,4 @@ insert into product (id, brand_id, category_id, description, is_active, name, pr
 insert into product (id, brand_id, category_id, description, is_active, name, price, quantity) VALUES (3, 3,2, 'Apple 12 is now goe live', true,'Apple 13 pro', 312.2,20);
 
 insert into product (id, brand_id, category_id, description, is_active, name, price, quantity) VALUES (4, 4,2, 'Google Pixel 5a - 5G with three month free Go-FI', true, 'Pixel 5a', 450.0,12);
+

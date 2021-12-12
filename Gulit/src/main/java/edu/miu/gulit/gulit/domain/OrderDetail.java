@@ -3,21 +3,22 @@ package edu.miu.gulit.gulit.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-//import javax.validation.constraints.*;
 import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product")
-public class Product {
-
+@AllArgsConstructor
+@Data
+@ToString
+public class OrderDetail {
+    //@Min(0)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     //@Size(min = 3)
     //@NotEmpty
@@ -26,31 +27,23 @@ public class Product {
     //@Size(min = 5)
     //@NotEmpty
     private String description;
-
     private Boolean isActive;
-
     //@Min(1)
     private long quantity;
     //@Min(0)
-    private  double price;
-    @OneToMany(mappedBy = "product")
+    private double price;
+
+    @OneToMany
     List<OrderItem> orderItems;
 
-    @ManyToOne
-    @JoinColumn(name = "category_ID")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "brand_ID")
-    private  Brand brand;
+    @OneToOne
+    @JoinColumn
+    private Brand brand;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany
     private List<ProductPhoto> images;
-
-    @ManyToOne()
-    @JoinColumn()
-    private Cart cart;
-
-    @OneToMany(mappedBy = "product")
-    private List<CartItem> cartItems;
 }

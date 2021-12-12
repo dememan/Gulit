@@ -1,28 +1,30 @@
 package edu.miu.gulit.gulit.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Data
-@Entity
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orderItem")
-public class OrderItem {
+@Data
+@Entity
+public class CartItem {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
-    @ManyToOne
+
+    private int quantity;
+
+    @ManyToOne()
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne()
     @JoinColumn(name = "product_id")
     private Product product;
-
-    @ManyToOne
-    @JoinColumn
-    private OrderDetail orderDetail;
 }
