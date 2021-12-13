@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.apache.tomcat.jni.Address;
 
 import javax.persistence.*;
+import java.sql.SQLTransactionRollbackException;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -14,7 +15,8 @@ import java.time.LocalDateTime;
 @Entity
 public class UserOrder {
     @Id
-    private int number;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long number;
     private LocalDateTime canceledDateTime;
     private LocalDateTime orderDateTime;
     private LocalDateTime shippedDateTime;

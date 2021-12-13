@@ -4,6 +4,7 @@ import edu.miu.gulit.gulit.domain.Buyer;
 import edu.miu.gulit.gulit.domain.OrderStatus;
 import edu.miu.gulit.gulit.domain.User;
 import edu.miu.gulit.gulit.domain.UserOrder;
+import edu.miu.gulit.gulit.repository.BuyerRepository;
 import edu.miu.gulit.gulit.repository.UserOrderRepository;
 import edu.miu.gulit.gulit.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class UserOrderServiceImpl implements UserOrderService{
 
     @Autowired
     UserOrderRepository orderRepository;
+    @Autowired
+   BuyerService buyerService ;
 
     @Override
     public UserOrder findById(long id) {
@@ -50,14 +53,13 @@ public class UserOrderServiceImpl implements UserOrderService{
 
     @Override
     public UserOrder deliveredOrder(String userName, long orderId) {
-
-        Buyer buyer =buyerRepository.getBuyerByUsername(userName);
-        List<Long> lOID= buyer.getOrders().stream().map(o->o.getId()).collect(Collectors.toList());
+        Buyer buyer =buyerService.getBuyerByUsername(userName);
+        List<Long> lOID= buyer.getOrders().stream().map(o->o.getNumber()).collect(Collectors.toList());
         if( lOID.contains(orderId)) {
             UserOrder order=findById(orderId);
             order.setOrderStatus(OrderStatus.DELIVERED);
             orderRepository.save(order);
-            buyerRepository.save(buyer);
+            buyerService.saveBuyer(buyer);
             return order;
         }
         return null;
