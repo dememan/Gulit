@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.URL;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 public class ProductPhotoDTO extends RepresentationModel<ProductPhotoDTO> implements Serializable {
@@ -13,7 +13,7 @@ public class ProductPhotoDTO extends RepresentationModel<ProductPhotoDTO> implem
 
     private long id;
 
-    @NotBlank
+    //@NotBlank
     @URL
     private String url;
 

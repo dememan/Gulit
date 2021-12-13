@@ -20,24 +20,23 @@ import java.util.List;
 @NoArgsConstructor
 public class ProductDto extends RepresentationModel<ProductDto> implements Serializable {
 
-    @Min(0)
+    //@Min(0)
     private long id;
 
-    @Size(min = 3)
-    @NotEmpty
+    //@Size(min = 3)
+    //@NotEmpty
     private String name;
 
-    @Size(min = 5)
-    @NotEmpty
+    //@Size(min = 5)
+    //@NotEmpty
     private String description;
     private Boolean isActive;
-    @Min(1)
+    //@Min(1)
     private long quantity;
-    @Min(0)
+    //@Min(0)
     private double price;
-    List<OrderItem> orderItems;
     private Category category;
-    private Brand brand;
-    private List<ProductPhoto> images;
+    private String brandName;
+    private List<String> imageUrls;
 
 }

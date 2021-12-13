@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+//import javax.validation.constraints.*;
 import java.util.List;
 
 @Data
@@ -19,20 +19,21 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Size(min = 3)
-    @NotEmpty
+    //@Size(min = 3)
+    //@NotEmpty
     private String name;
 
-    @Size(min = 5)
-    @NotEmpty
+    //@Size(min = 5)
+    //@NotEmpty
     private String description;
 
     private Boolean isActive;
 
-    @Min(1)
-    private long quantity;
-@Min(0)
+    //@Min(1)
+    private int quantity;
+    //@Min(0)
     private  double price;
+
     @OneToMany(mappedBy = "product")
     List<OrderItem> orderItems;
 
@@ -46,4 +47,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<ProductPhoto> images;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartItem> cartItems;
 }

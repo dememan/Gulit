@@ -19,6 +19,7 @@ insert into brand (id,name) VALUES (4,'Apple');
 
 insert into category (id,name) VALUES (1,'Shoes');
 insert into category (id,name) VALUES (2,'Electronics');
+insert into category (id,name) VALUES (3,'Books');
 
 
 insert into product (id, brand_id, category_id, description, is_active, name, price, quantity) VALUES (1, 1,1, 'Nike Summer shoes confrtable', true,'Nike Zoom 12', 142.2,15);
@@ -28,3 +29,4 @@ insert into product (id, brand_id, category_id, description, is_active, name, pr
 insert into product (id, brand_id, category_id, description, is_active, name, price, quantity) VALUES (3, 3,2, 'Apple 12 is now goe live', true,'Apple 13 pro', 312.2,20);
 
 insert into product (id, brand_id, category_id, description, is_active, name, price, quantity) VALUES (4, 4,2, 'Google Pixel 5a - 5G with three month free Go-FI', true, 'Pixel 5a', 450.0,12);
+

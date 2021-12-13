@@ -35,6 +35,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/**", "/h2-console/**").permitAll()
+                .and().antMatcher("/cart/**").authorizeRequests()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .anyRequest().hasAnyAuthority("ADMIN", "USER")
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
