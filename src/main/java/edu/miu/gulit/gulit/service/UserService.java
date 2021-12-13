@@ -15,4 +15,6 @@ public interface UserService {
     void deleteById(long id);
 
     List<ProductPhoto> findImagesById(long id);
+
+    User getCurrentUser();
 }

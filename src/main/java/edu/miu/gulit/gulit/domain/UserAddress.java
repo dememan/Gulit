@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class UserAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String streetAddress1;
 
     @Column(nullable = true)

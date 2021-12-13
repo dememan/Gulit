@@ -16,6 +16,10 @@ public class UserAddressServiceImpl implements UserAddressService{
     public List<UserAddress> getAddresses() {
         return userAddressRepository.findAll();
     }
+    @Override
+    public UserAddress getAddressById(long address_id) {
+        return userAddressRepository.findById(address_id).orElse(null);
+    }
 
     @Override
     public UserAddress saveAddress(UserAddress address) {
@@ -23,13 +27,13 @@ public class UserAddressServiceImpl implements UserAddressService{
     }
 
     @Override
-    public UserAddress updateAddress(UserAddress address, int id) {
+    public UserAddress updateAddress(UserAddress address, long id) {
         address.setId(id);
         return userAddressRepository.save(address);
     }
 
     @Override
-    public void deleteAddressById(int id) {
+    public void deleteAddressById(long id) {
         userAddressRepository.deleteById(id);
     }
 }

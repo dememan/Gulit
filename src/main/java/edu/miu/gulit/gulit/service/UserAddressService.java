@@ -9,7 +9,9 @@ public interface UserAddressService {
     List<UserAddress> getAddresses();
     UserAddress saveAddress(UserAddress address);
 
-    UserAddress updateAddress(UserAddress address, int id);
+    UserAddress updateAddress(UserAddress address, long id);
 
-    void deleteAddressById(int id);
+    UserAddress getAddressById(long address_id);
+
+    void deleteAddressById(long id);
 }

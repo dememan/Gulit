@@ -1,5 +1,6 @@
 package edu.miu.gulit.gulit.util;
 
+import edu.miu.gulit.gulit.domain.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
