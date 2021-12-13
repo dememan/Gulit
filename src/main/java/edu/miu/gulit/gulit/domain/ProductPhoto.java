@@ -6,11 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+//import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
@@ -22,7 +19,7 @@ public class ProductPhoto {
     @GeneratedValue
     private long id;
 
-    @NotBlank
+    //@NotBlank
     @URL
     private String url;
 

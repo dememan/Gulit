@@ -32,4 +32,7 @@ public class User {
             @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles;
 
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 }
