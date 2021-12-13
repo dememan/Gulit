@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Addresses")
+@CrossOrigin()
 public class UserAddressController {
     @Autowired
     UserAddressService userAddressService;

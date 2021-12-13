@@ -18,20 +18,14 @@ public class Seller extends User{
 
 
     boolean isApproved;
-    @OneToMany(mappedBy = "seller", fetch = FetchType.EAGER)
-    List <product> products;
+
     //@Size(min = 3)
     //@NotEmpty
-    string company;
+    String company;
     //@Size(min = 5)
     //@NotEmpty
-    string website;
+    String website;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "buyer", joinColumns = {
-            @JoinColumn(name = "seller_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "buyer_id") })
-    Set<Buyer>  sellerSubscriptions;
 
 
 }

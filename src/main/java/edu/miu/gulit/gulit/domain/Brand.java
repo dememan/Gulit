@@ -16,10 +16,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Brand {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long id;
-
     //@Size(min = 2)
     //@NotEmpty
     private String name;
