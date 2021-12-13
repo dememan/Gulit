@@ -3,6 +3,7 @@ package edu.miu.gulit.gulit.service;
 import edu.miu.gulit.gulit.domain.ProductPhoto;
 import edu.miu.gulit.gulit.domain.User;
 import edu.miu.gulit.gulit.repository.UserRepository;
+import edu.miu.gulit.gulit.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<ProductPhoto> findImagesById(long id) {
         return null;
+    }
+
+    @Override
+    public User getCurrentUser(){
+        return UserUtil.getCurrentUserLogin()
+                .flatMap(username -> repository.findByUsername(username))
+                .orElse(null);
     }
 }
