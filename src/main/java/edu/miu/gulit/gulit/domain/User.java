@@ -15,16 +15,22 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "USER")
 public class User {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-    String name;
     String username;
-    String password;
 
-  /*  @Email(regexp=".*@.*\\..*", message = "Email should be valid")
-    String email;*/
-    boolean isEnabled;
+    @NonNull
+    private String firstName;
+    @NonNull
+    private String lastName;
+    @NonNull
+    @Email(regexp=".*@.*\\..*", message = "Email should be valid")
+    private String email;
+    @NonNull
+    private String password;
+    @NonNull
+    private boolean isEnabled;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES", joinColumns = {

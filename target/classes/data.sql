@@ -6,8 +6,8 @@ INSERT into POST (id, title, content, author)  VALUES (4, 'SpringBoot','This is 
 INSERT INTO ROLE(ROLE_ID, ROLE) VALUES (1, 'USER');
 INSERT INTO ROLE(ROLE_ID, ROLE) VALUES (2, 'ADMIN');
 
-insert into user (id, name , username, password, is_enabled )  VALUES (111, 'user','user','1234',true);
-insert into user (id, name , username, password, is_enabled )  VALUES (112, 'Admin','admin','1234',true);
+insert into user (id ,username, password, is_enabled )  VALUES (111,'user@gmail.com','1234',true);
+insert into user (id, username, password, is_enabled )  VALUES (112,'admin@gmail.com','1234',true);
 
 insert into USER_ROLES(USER_ID, ROLE_ID) VALUES (111, 1);
 insert into USER_ROLES(USER_ID, ROLE_ID) VALUES (112, 2);
