@@ -8,8 +8,23 @@ import { useParams} from 'react-router-dom';
 import Page from 'src/components/Page';
 import ProductDetailCard from 'src/components/_dashboard/products/ProductDetailCard';
 import Typography from 'src/theme/overrides/Typography';
+import { ProductCartWidget } from "src/components/_dashboard/products";
+import Cart from "src/layouts/Cart";
 
 const ProductDetail = (props) => { 
+
+    
+  const [cartIsShown, setCartIsShown] = useState(false);
+const showCartHandler = () => {
+  setCartIsShown(true);
+};
+
+const hideCartHandler = () => {
+  setCartIsShown(false);
+};
+
+
+
     
     console.log('inside product detail' ) ;
     let { id } = useParams();
@@ -49,6 +64,12 @@ const ProductDetail = (props) => {
          
         <Grid key={product.id} item xs={12} sm={12} md={12}  >
         <ProductDetailCard product={product} />
+       
+        {cartIsShown && <Cart onClose={hideCartHandler} />}
+         <ProductCartWidget onShowCart={showCartHandler} />
+    
+
+
       </Grid>
       </Container>
       </Page>

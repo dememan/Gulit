@@ -1,7 +1,7 @@
 import PropTypes, { checkPropTypes } from "prop-types";
 import { Link as RouterLink, Route } from "react-router-dom";
 // material
-import { Box, Card, Link, Typography, Stack, Switch } from "@mui/material";
+import { Box, Card, Link, Typography, Stack, Switch, Divider, Chip } from "@mui/material";
 import { styled } from "@mui/material/styles";
 // utils
 import { fCurrency } from "../../../utils/formatNumber";
@@ -9,7 +9,9 @@ import { fCurrency } from "../../../utils/formatNumber";
 import Label from "../../Label";
 import ColorPreview from "../../ColorPreview";
 import ProductDetail from "src/pages/ProductDetail";
-
+import CartContext from "src/store/cart-context";
+import ItemCartForm from "./ItemCartForm";
+import { useContext } from "react";
 // ----------------------------------------------------------------------
 
 const ProductImgStyle = styled("img")({
@@ -20,6 +22,8 @@ const ProductImgStyle = styled("img")({
   position: "absolute",
 });
 
+
+
 // ----------------------------------------------------------------------
 
 ShopProductCard.propTypes = {
@@ -28,6 +32,20 @@ ShopProductCard.propTypes = {
 
 export default function ShopProductCard({ product }) {
   const { id, name, cover, price, status, priceSale } = product;
+
+  const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = amount => {
+    cartCtx.addItem({
+      id: id,
+      name: name,
+      amount: amount,
+      price: price
+    });
+  
+  };
+
+  
 
   return (
     <Card>
@@ -89,6 +107,14 @@ color="inherit" underline="hover" component={RouterLink} > */}
             {fCurrency(price)}
           </Typography>
         </Stack>
+        <Stack
+          direction="row"
+          alignItems="left"
+          justifyContent="space-between"
+        >
+        <Divider variant="inset"></Divider>
+    
+<ItemCartForm id={id} onAddToCart={addToCartHandler} />  </Stack>
       </Stack>
     </Card>
   );

@@ -3,6 +3,9 @@ import shoppingCartFill from '@iconify/icons-eva/shopping-cart-fill';
 // material
 import { styled } from '@mui/material/styles';
 import { Badge } from '@mui/material';
+import CartContext from 'src/store/cart-context'; 
+import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -29,10 +32,43 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function CartWidget() {
+export default function CartWidget(props) {
+
+ 
+  const cartCtx = useContext(CartContext);
+
+  const { items } = cartCtx;
+
+  const numberOfCartItems = items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
+ 
+
+  useEffect(() => {
+    if (items.length === 0) {
+      return;
+    } 
+
+    const timer = setTimeout(() => { 
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [items]);
+ 
+
+  const navigate = useNavigate();
+  
+  const ShowCheckout=(e) =>{
+    e.preventDefault();
+     let path = '../checkout'; 
+    navigate(path);
+  }
+
   return (
     <RootStyle>
-      <Badge showZero badgeContent={0} color="error" max={99}>
+      <Badge showZero badgeContent={numberOfCartItems} color="error" max={99} onClick={ShowCheckout}>
         <Icon icon={shoppingCartFill} width={24} height={24} />
       </Badge>
     </RootStyle>
