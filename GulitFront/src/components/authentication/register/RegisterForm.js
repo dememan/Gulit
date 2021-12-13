@@ -34,12 +34,16 @@ export default function RegisterForm() {
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
+      console.log(formik.values);
       navigate('/dashboard', { replace: true });
     }
   });
 
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
+  const registerUser = () =>  console.log(getFieldProps);
+
+  
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -97,6 +101,7 @@ export default function RegisterForm() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            onClick={registerUser}
           >
             Register
           </LoadingButton>
