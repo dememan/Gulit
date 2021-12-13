@@ -32,12 +32,12 @@ public class CartController {
         cartService.addToCart(cartItem.getProductId(), cartItem.getQuantity());
     }
 
-    @PutMapping("/{cartItemId}")
-    public void updateCartItem(@RequestBody Product product, @PathVariable("cartItemId") int id) {
-        cartService.updateCartItem(product, id);
+    @PutMapping("/cart-items/")
+    public void updateCartItem(@RequestBody CartItemRequest cartItem) {
+        cartService.updateCartItem(cartItem.getProductId(), cartItem.getQuantity());
     }
 
-    @DeleteMapping("/{cartItemId}")
+    @DeleteMapping("/cart-items/{cartItemId}")
     public void deleteCartItem(@PathVariable("cartItemId") int id) {
         cartService.deleteCartItem(id);
     }

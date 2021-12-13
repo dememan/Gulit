@@ -10,7 +10,12 @@ import edu.miu.gulit.gulit.repository.ProductRepository;
 import edu.miu.gulit.gulit.repository.UserRepository;
 import edu.miu.gulit.gulit.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartServiceImpl implements CartService{
@@ -69,16 +74,23 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public void deleteCartItem(int id) {
-        cartRepository.deleteById(id);
+        cartItemRepository.deleteById(id);
     }
 
     @Override
-    public void updateCartItem(Product product, int id) {
-//        CartItem cartItem = new CartItem();
-//        cartItem.setId(id);
-//        //cartItem.setProduct(product);
-//        cartItem.setQuantity(product.getQuantity());
-//
-//        cartRepository.save(cartItem);
+    public void updateCartItem(long productId, int quantity) {
+
+        Cart cart = findOrCreateCart(getCurrentUser());
+
+        List<CartItem> cartItems = Optional.ofNullable(cart.getItems()).orElse(List.of());
+
+        Optional.ofNullable(cart.getItems()).orElse(List.of()).stream()
+                .filter(item -> item.getProduct().getId() == productId)
+                .findFirst()
+                .map(cartItem -> {
+                    cartItem.setQuantity(quantity);
+                    return cartItemRepository.save(cartItem);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid product id"));
     }
 }

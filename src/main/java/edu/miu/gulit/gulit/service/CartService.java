@@ -1,7 +1,6 @@
 package edu.miu.gulit.gulit.service;
 
 import edu.miu.gulit.gulit.domain.Cart;
-import edu.miu.gulit.gulit.domain.Product;
 
 public interface CartService {
     Cart findAllCart();
@@ -10,5 +9,5 @@ public interface CartService {
 
     void deleteCartItem(int id);
 
-    void updateCartItem(Product product, int id);
+    void updateCartItem(long productId, int quantity);
 }
