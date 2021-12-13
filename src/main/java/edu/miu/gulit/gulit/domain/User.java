@@ -20,16 +20,16 @@ public class User {
     long id;
     String username;
 
-    @NonNull
+//    @NonNull
     private String firstName;
-    @NonNull
+   // @NonNull
     private String lastName;
-    @NonNull
+   // @NonNull
     @Email(regexp=".*@.*\\..*", message = "Email should be valid")
     private String email;
     @NonNull
     private String password;
-    @NonNull
+  //  @NonNull
     private boolean isEnabled;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
