@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 public class UserOrderServiceImpl implements UserOrderService{
 
     @Autowired
-
     UserOrderRepository orderRepository;
 
     @Override
@@ -50,22 +49,17 @@ public class UserOrderServiceImpl implements UserOrderService{
     }
 
     @Override
-    public UserOrder deliveredOrder(String userName, long id) {
+    public UserOrder deliveredOrder(String userName, long orderId) {
+
+        Buyer buyer =buyerRepository.getBuyerByUsername(userName);
+        List<Long> lOID= buyer.getOrders().stream().map(o->o.getId()).collect(Collectors.toList());
+        if( lOID.contains(orderId)) {
+            UserOrder order=findById(orderId);
+            order.setOrderStatus(OrderStatus.DELIVERED);
+            orderRepository.save(order);
+            buyerRepository.save(buyer);
+            return order;
+        }
         return null;
     }
-
-//    @Override
-//    public UserOrder deliveredOrder(String userName, long orderId) {
-//
-//        Buyer buyer =buyerRepository.getBuyerByUsername(userName);
-//        List<Long> lOID= buyer.getOrders().stream().map(o->o.getId()).collect(Collectors.toList());
-//        if( lOID.contains(orderId)) {
-//            UserOrder order=findById(orderId);
-//            order.setOrderStatus(OrderStatus.DELIVERED);
-//            orderRepository.save(order);
-//            buyerRepository.save(buyer);
-//            return order;
-//        }
-//        return null;
-//    }
 }
