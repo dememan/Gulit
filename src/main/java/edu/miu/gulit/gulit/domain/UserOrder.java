@@ -25,7 +25,7 @@ public class UserOrder {
     @JoinColumn(name = "shipping_address_id")
     private UserAddress shippingAddress;
 
-    private OrderStatus orderstatus;
+    private OrderStatus orderStatus;
 
     @OneToOne
     @JoinColumn(name = "billing_address_id")
