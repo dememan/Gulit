@@ -13,13 +13,12 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "USER")
+@Table(name ="USER")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     String username;
-
 //    @NonNull
     private String firstName;
    // @NonNull
@@ -37,7 +36,6 @@ public class User {
             @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
             @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles;
-
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
