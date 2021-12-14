@@ -26,7 +26,6 @@ import java.util.List;
 
             return buyerService.saveBuyer(buyer);
         }
-
         @PutMapping("/profile/")
         public Buyer updateBuyer(@RequestBody Buyer buyer){
             return buyerService.updateBuyer(buyer);
@@ -50,12 +49,10 @@ import java.util.List;
     public UserAddress updateBillingAddress(@PathVariable long address_id){
         return buyerService.updateBillingAddress(address_id);
     }
-
     @PutMapping("/profile/shipping/{address_id}")
     public UserAddress updateShippingAddress(@PathVariable long address_id){
         return buyerService.updateShippingAddress(address_id);
     }
-
     @GetMapping("/shippingAddress")
     public UserAddress getShippingAddress() {
         return buyerService.getShippingAddress();
@@ -70,7 +67,6 @@ import java.util.List;
             buyerService.followSeller(sellerService.getSellerByUserName(sellerUserName).getSId()
             );
         }
-
         @PostMapping("/{bUserName}/unfollow/{sUserName}")
         public void unFollowSeller(@PathVariable String bUserName, @PathVariable String sUserName){
             buyerService.unFollowSeller(
@@ -84,7 +80,6 @@ import java.util.List;
 
             return buyerService.getOrderByBuyerUserNameOrderId(id, userName);
         }
-
         @GetMapping("/{userName}/orders")
         public List<Order> getAllOrdersForBuyer(@PathVariable String userName){
             return buyerService.getAllOrdersForBuyer(buyerService.getBuyerByUsername(userName).getBId());
