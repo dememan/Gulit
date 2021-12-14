@@ -43,6 +43,7 @@ public class UserOrderServiceImpl implements UserOrderService{
     }
     @Override
     public UserOrder update(UserOrder order, long id) {
+        order.setNumber(id);
         return orderRepository.save(order);
     }
 

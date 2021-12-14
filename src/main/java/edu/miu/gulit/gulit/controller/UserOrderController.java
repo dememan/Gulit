@@ -1,5 +1,6 @@
 package edu.miu.gulit.gulit.controller;
 
+import edu.miu.gulit.gulit.domain.OrderItem;
 import edu.miu.gulit.gulit.domain.User;
 import edu.miu.gulit.gulit.domain.UserOrder;
 import edu.miu.gulit.gulit.service.UserOrderService;

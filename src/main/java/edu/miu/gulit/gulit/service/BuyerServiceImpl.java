@@ -6,9 +6,11 @@ import edu.miu.gulit.gulit.domain.UserAddress;
 import edu.miu.gulit.gulit.domain.UserOrder;
 import edu.miu.gulit.gulit.repository.BuyerRepository;
 import edu.miu.gulit.gulit.repository.SellerRepository;
+import edu.miu.gulit.gulit.repository.UserOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +23,8 @@ public class BuyerServiceImpl implements BuyerService {
     BuyerRepository buyerRepository;
     @Autowired
     SellerRepository sellerRepository;
+    @Autowired
+    UserOrderRepository userOrderRepository;
 
     @Autowired
     UserAddressService addressService;
@@ -39,10 +43,6 @@ public class BuyerServiceImpl implements BuyerService {
 
     private String currentUserUserName ="deme";// userService.getCurrentUser().getUsername();
 
-    @Override
-    public List<UserOrder> getAllOrders() {
-        return buyerRepository.getAllOrdersByBuyerId(getBuyerByUsername(currentUserUserName).getBId());
-    }
 
     @Override
     public Buyer getBuyerByUsername(String userName) {
@@ -78,6 +78,13 @@ public class BuyerServiceImpl implements BuyerService {
     @Override
     public UserAddress getBillingAddress() {
         return buyerRepository.getBillingAddress(getBuyerByUsername(currentUserUserName).getBId());
+    }
+
+    @Override
+    public UserOrder getOrderByBuyerUserNameOrderId(long id, String userName) {
+        Buyer buyer=buyerRepository.findBuyerByUsername(userName);
+         return userOrderRepository.findById(buyerRepository.getOrderByBuyerUserNameOrderId( id,  buyer.getBId()));
+
     }
 
     @Override
