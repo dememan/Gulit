@@ -20,7 +20,7 @@ public class Seller{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long sellerId;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id")
+    @JoinColumn(name="user_id")
     User user;
     boolean isApproved;
 

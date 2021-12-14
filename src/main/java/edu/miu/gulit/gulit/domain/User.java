@@ -36,7 +36,6 @@ public class User {
             @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
             @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles;
-    @OneToOne
-    @JoinColumn(name = "cart_id")
+    @OneToOne(mappedBy = "user")
     private Cart cart;
 }

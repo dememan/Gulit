@@ -55,7 +55,7 @@ public class SellerController {
         sellerService.deleteById(id);
     }
 
-    @PostMapping("{id}")
+    @PutMapping("/approve/{id}")
     public  void approveSeller(@PathVariable long id)
     {
         sellerService.approveSeller(id);

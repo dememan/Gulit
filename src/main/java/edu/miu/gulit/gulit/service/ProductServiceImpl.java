@@ -1,8 +1,11 @@
 package edu.miu.gulit.gulit.service;
 
+import edu.miu.gulit.gulit.domain.OrderItem;
 import edu.miu.gulit.gulit.domain.Product;
 import edu.miu.gulit.gulit.domain.ProductPhoto;
+import edu.miu.gulit.gulit.domain.UserOrder;
 import edu.miu.gulit.gulit.repository.ProductRepository;
+import edu.miu.gulit.gulit.repository.UserOrderRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,8 @@ public class ProductServiceImpl implements ProductService{
 
     @Autowired
     ModelMapper mapper;
+    @Autowired
+    UserOrderRepository orderRepository;
 
     @Autowired
     public ProductServiceImpl(ProductRepository repository) {
@@ -53,10 +58,10 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteById(long id) {
-
-        repository.deleteById(id);
+    List<OrderItem> orderItems = findById(id).getOrderItems();
+            if(orderItems.size() < findById(id).getQuantity())repository.deleteById(id);
+            else   System.out.println("Product is Ordered by a buyer , can't be deleted");
     }
-
     @Override
     public List<ProductPhoto> findImagesById(long id) {
         if(repository.getImagesById(id)==null) return null;

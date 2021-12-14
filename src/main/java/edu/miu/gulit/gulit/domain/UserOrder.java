@@ -8,6 +8,7 @@ import org.apache.tomcat.jni.Address;
 import javax.persistence.*;
 import java.sql.SQLTransactionRollbackException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,4 +37,7 @@ public class UserOrder {
     @ManyToOne
     @JoinColumn(name = "buyer_id")
     private Buyer buyer;
+
+    @OneToMany
+    private List<OrderItem> orderItems;
 }
