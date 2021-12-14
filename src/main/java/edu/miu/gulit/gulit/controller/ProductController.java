@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 //import javax.validation.Valid;
 import java.util.List;
-@CrossOrigin
+@CrossOrigin()
 @RestController
 @RequestMapping("/products")
-public class ProductController implements ProductController {
+public class ProductController{
 
     ProductService service;
 
@@ -19,36 +19,35 @@ public class ProductController implements ProductController {
     public ProductController(ProductService service) {
         this.service = service;
     }
-@Override
+
     @GetMapping
     public List<Product> findAll() {
         return service.findAll();
     }
-    @Override
+
     @GetMapping("{id}")
     public Product findById(@PathVariable("id") long id) {
         return service.findById(id);
     }
 
-    @Override
+
     @PostMapping
     public Product save(@RequestBody  Product data) {
         return service.save(data);
     }
 
-    @Override
+
     @PutMapping("{id}")
     public Product update(@RequestBody  Product data, @PathVariable long id) {
        return service.update(data, id);
     }
 
-    @Override
+
     @DeleteMapping("{id}")
     public void deleteById(@PathVariable  long id) {
         service.deleteById(id);
     }
 
-    @Override
     @PutMapping("/{id}/images")
     public List<ProductPhoto> findImagesById(@PathVariable long id) {
        return  service.findImagesById(id);
