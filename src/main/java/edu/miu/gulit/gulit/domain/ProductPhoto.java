@@ -1,5 +1,6 @@
 package edu.miu.gulit.gulit.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.miu.gulit.gulit.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class ProductPhoto {
     //@NotBlank
     @URL
     private String url;
-
+    @JsonIgnore
     @ManyToOne
     private Product product;
 }

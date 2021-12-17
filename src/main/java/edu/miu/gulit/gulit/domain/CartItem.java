@@ -1,8 +1,7 @@
 package edu.miu.gulit.gulit.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter @Getter
 @Entity
 public class CartItem {
     @Id
@@ -26,5 +25,6 @@ public class CartItem {
 
     @ManyToOne()
     @JoinColumn()
+    @JsonIgnore
     private Product product;
 }

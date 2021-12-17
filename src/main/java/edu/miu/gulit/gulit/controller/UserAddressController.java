@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Addresses")
+@RequestMapping("/addresses")
 @CrossOrigin()
 public class UserAddressController {
     @Autowired

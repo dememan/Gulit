@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -28,8 +29,10 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
+        ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(httpServletRequest);
+
         // if this header contains a token is will get something like (Bearer xxxxxxxxxxxxxxxxxxxxxxx)
-        final String authorizationHeader = httpServletRequest.getHeader("Authorization");
+        final String authorizationHeader = requestWrapper.getHeader("Authorization");
 
         String username= null;
         String jwt = null;
@@ -51,7 +54,7 @@ public class JwtFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
-        filterChain.doFilter(httpServletRequest,httpServletResponse);
+        filterChain.doFilter(requestWrapper,httpServletResponse);
         // After this we will tell the spring security configuration to not manage the session
         // This will work for each request and sets up the security context each time
 

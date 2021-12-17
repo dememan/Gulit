@@ -1,4 +1,5 @@
 package edu.miu.gulit.gulit.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
         import lombok.Data;
         import lombok.Getter;
@@ -16,6 +17,8 @@ public class Review {
     long id;
     String title;
     String descripton;
+
+    @JsonIgnore
     @ManyToOne
     Product product;
     @ManyToOne
