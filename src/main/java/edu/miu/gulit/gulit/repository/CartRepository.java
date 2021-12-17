@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface CartRepository extends CrudRepository<Cart, Integer> {
 
-    Optional<Cart> findByUser(User user);
+    Optional<Cart> findTopByUser(User user);
 }

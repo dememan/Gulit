@@ -47,7 +47,7 @@ public class CartServiceImpl implements CartService{
 
     private Cart findOrCreateCart(User user) {
 
-        return cartRepository.findByUser(user)
+        return cartRepository.findTopByUser(user)
                         .orElseGet(() -> {
                             Cart cart = new Cart(null, user);
                             return cartRepository.save(cart);

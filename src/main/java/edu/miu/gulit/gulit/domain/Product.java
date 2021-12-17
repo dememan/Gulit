@@ -1,9 +1,10 @@
 package edu.miu.gulit.gulit.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
+//import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 //import javax.validation.constraints.*;
@@ -47,14 +48,18 @@ public class Product {
     private  Brand brand;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ProductPhoto> images;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     private List<CartItem> cartItems;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private  List<Review> revews;
+
+    @JsonIgnore
     @ManyToOne
     private Seller seller;
 }
