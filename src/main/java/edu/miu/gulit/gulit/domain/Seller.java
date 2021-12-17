@@ -23,16 +23,14 @@ public class Seller{
     @JoinColumn(name="user_id")
     User user;
     boolean isApproved;
-
     //@Size(min = 3)
     //@NotEmpty
+
     String company;
     //@Size(min = 5)
     //@NotEmpty
     String website;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "seller_id")
+    @OneToMany(mappedBy = "seller" ,cascade = CascadeType.ALL)
     @JsonIgnore
     List<Product> products;
 

@@ -2,6 +2,7 @@ package edu.miu.gulit.gulit.controller;
 
 
  import edu.miu.gulit.gulit.domain.Seller;
+ import edu.miu.gulit.gulit.domain.UserOrder;
  import edu.miu.gulit.gulit.service.SellerService;
  import edu.miu.gulit.gulit.service.UserService;
  import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ package edu.miu.gulit.gulit.controller;
  import java.util.Optional;
 
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin()
 @RestController
 @RequestMapping("/sellers")
 public class SellerController {
@@ -21,13 +22,9 @@ public class SellerController {
     SellerService sellerService;
     @Autowired
     UserService Userservice;
-
-
-
     @GetMapping("{id}")
     public Optional<Seller> findById(@PathVariable("id") long id) {
         return sellerService.findById(id);
-
     }
     @GetMapping("{name}")
     public Optional<Seller> loadSellerByName(@PathVariable  String name) {
@@ -59,6 +56,15 @@ public class SellerController {
     public  void approveSeller(@PathVariable long id)
     {
         sellerService.approveSeller(id);
+    }
+
+    @PostMapping("/{userName}/order/cancel/{id}")
+    public UserOrder cancelSellerOrder(@PathVariable("userName") String userName,@PathVariable("id") long oId){
+        return sellerService.cancelSellerOrder(userName,oId);
+    }
+    @PostMapping("/{userName}/order/shipped/{id}")
+    public UserOrder shipSellerOrder(@PathVariable("userName") String userName, @PathVariable("id") long oId){
+        return sellerService.shipSellerOrder(userName,oId);
     }
 }
 

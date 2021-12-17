@@ -27,5 +27,4 @@ public interface SellerRepository extends CrudRepository<Seller, Long> {
 
 
     public  void deleteById(long id);
-
 }

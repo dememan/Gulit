@@ -27,6 +27,6 @@ public interface  BuyerService {
     UserAddress getShippingAddress();
 
     UserAddress getBillingAddress();
+    public UserOrder getOrderByBuyerUserNameOrderId(long id, String userName);
 
-    List<UserOrder> getAllOrders();
 }

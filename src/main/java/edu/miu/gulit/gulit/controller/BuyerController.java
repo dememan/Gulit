@@ -1,15 +1,13 @@
 package edu.miu.gulit.gulit.controller;
 
-import edu.miu.gulit.gulit.domain.Buyer;
-import edu.miu.gulit.gulit.domain.Seller;
-import edu.miu.gulit.gulit.domain.UserAddress;
+import edu.miu.gulit.gulit.domain.*;
 import edu.miu.gulit.gulit.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin()
     @RestController
     @RequestMapping("/buyers")
     public class BuyerController {
@@ -58,6 +56,12 @@ import java.util.List;
         return buyerService.getShippingAddress();
     }
 
+    @GetMapping("/{userName}/order/{id}")
+    public UserOrder getOrderByBuyerUserNameOrderId(@PathVariable long id, @PathVariable String userName){
+
+        return buyerService.getOrderByBuyerUserNameOrderId(id, userName);
+    }
+
     @GetMapping("/BillingAddress")
     public UserAddress getBillingAddress() {
         return buyerService.getBillingAddress();
@@ -80,10 +84,7 @@ import java.util.List;
 
             return buyerService.getOrderByBuyerUserNameOrderId(id, userName);
         }
-        @GetMapping("/{userName}/orders")
-        public List<Order> getAllOrdersForBuyer(@PathVariable String userName){
-            return buyerService.getAllOrdersForBuyer(buyerService.getBuyerByUsername(userName).getBId());
-        }
+
 
 
         @GetMapping("/{userName}/order/{id}/listItems")
