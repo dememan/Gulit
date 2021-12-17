@@ -23,8 +23,7 @@ public class Buyer {
     @Digits(integer = 6, fraction = 0)
     long points=0;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn
+    @OneToMany(mappedBy = "buyer")
     @Fetch(FetchMode.SELECT)
     private List<UserOrder> orders;
 
