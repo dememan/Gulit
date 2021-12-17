@@ -41,7 +41,7 @@ public class BuyerServiceImpl implements BuyerService {
 
 */
 
-    private String currentUserUserName ="deme";// userService.getCurrentUser().getUsername();
+    //private String currentUserUserName ="deme";// userService.getCurrentUser().getUsername();
 
 
     @Override
@@ -51,12 +51,12 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public List<Seller> getSellersFollowed() {
-        return getBuyerByUsername(currentUserUserName).getSellersFollowed();
+        return getBuyerByUsername(userService.getCurrentUser().getUsername()).getSellersFollowed();
     }
 
     @Override
     public UserAddress updateBillingAddress(long address_id) {
-        Buyer buyer = buyerRepository.findBuyerByUsername(currentUserUserName);
+        Buyer buyer = buyerRepository.findBuyerByUsername(userService.getCurrentUser().getUsername());
         buyer.setBillingAddress(addressService.getAddressById(address_id));
         buyerRepository.save(buyer);
         return addressService.getAddressById(address_id);
@@ -64,7 +64,7 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public UserAddress updateShippingAddress(long address_id) {
-        Buyer buyer = buyerRepository.findBuyerByUsername(currentUserUserName);
+        Buyer buyer = buyerRepository.findBuyerByUsername(userService.getCurrentUser().getUsername());
         buyer.setShippingAddress(addressService.getAddressById(address_id));
         buyerRepository.save(buyer);
         return addressService.getAddressById(address_id);
@@ -72,12 +72,12 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public UserAddress getShippingAddress() {
-        return buyerRepository.getShippingAddress(getBuyerByUsername(currentUserUserName).getBId());
+        return buyerRepository.getShippingAddress(getBuyerByUsername(userService.getCurrentUser().getUsername()).getBId());
     }
 
     @Override
     public UserAddress getBillingAddress() {
-        return buyerRepository.getBillingAddress(getBuyerByUsername(currentUserUserName).getBId());
+        return buyerRepository.getBillingAddress(getBuyerByUsername(userService.getCurrentUser().getUsername()).getBId());
     }
 
     @Override
@@ -95,11 +95,11 @@ public class BuyerServiceImpl implements BuyerService {
     @Override
     public Buyer updateBuyer(Buyer buyer) {
 
-        Buyer currentBuyer = buyerRepository.findBuyerByUsername(currentUserUserName);
+        Buyer currentBuyer = buyerRepository.findBuyerByUsername(userService.getCurrentUser().getUsername());
         buyer.setBId(currentBuyer.getBId());
         return buyerRepository.save(buyer);
-    }
 
+    }
     @Override
     public List<Buyer> getAllBuyers() {
         return buyerRepository.findAllBuyers();

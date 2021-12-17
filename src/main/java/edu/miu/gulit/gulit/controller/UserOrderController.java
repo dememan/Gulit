@@ -34,7 +34,7 @@ public class UserOrderController {
     }
 
     @PostMapping
-    public UserOrder save(@RequestBody @Valid UserOrder data) {
+    public UserOrder save(@RequestBody UserOrder data) {
         return userOrderService.save(data);
     }
     //

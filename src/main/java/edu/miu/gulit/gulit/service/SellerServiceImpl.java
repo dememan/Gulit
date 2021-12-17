@@ -2,7 +2,9 @@ package edu.miu.gulit.gulit.service;
 
     import edu.miu.gulit.gulit.domain.Product;
         import edu.miu.gulit.gulit.domain.Seller;
-        import edu.miu.gulit.gulit.repository.SellerRepository;
+    import edu.miu.gulit.gulit.domain.User;
+    import edu.miu.gulit.gulit.domain.UserOrder;
+    import edu.miu.gulit.gulit.repository.SellerRepository;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Service;
 
@@ -13,6 +15,12 @@ package edu.miu.gulit.gulit.service;
 class SellerServiceImpl implements  SellerService {
     @Autowired
     SellerRepository sellerRepository;
+
+//    @Autowired
+//    SellerService sellerService;
+
+    @Autowired
+    UserOrderService orderService;
 
     @Override
     public Optional<Seller> loadSellerByName(String name) {
@@ -71,4 +79,34 @@ class SellerServiceImpl implements  SellerService {
                 for(Product p : sellingPersong.get().getProducts())
                 result.add(p) ;
         return result;
-    }}
+    }
+
+    @Override
+    public UserOrder cancelSellerOrder(String userName, long oId) {
+//        Seller seller =sellerService.loadSellerByName(userName).get();
+//        List<Long> lOID= sellerService.getOrderIdsBySellerBySId(seller.getSellerId());
+//        if( lOID.contains(oId)) {
+//            UserOrder order=orderService.getOrderById(oId);
+//            if (order.getOrderStatus()!=OrderStatus.Shipped.getOrderStatus())
+//                order.setOrderStatus(OrderStatus.Cancelled.getOrderStatus());
+//            orderService.save(order);
+//            return order;
+//        }
+       return null;
+         }
+
+    @Override
+    public UserOrder shipSellerOrder(String userName, long oId) {
+//        Seller seller =sellerRepository.findByUsername(userName).get();
+//        List<Long> lOID= this.getOrderIdsBySellerBySId(seller.getSId());
+//        if( lOID.contains(oId)) {
+//            Order order=orderService.getOrderById(oId);
+//            order.setOrderStatus(OrderStatus.Shipped.getOrderStatus());
+//            orderService.save(order);
+//            sellerService.save(seller);
+//            return order;
+//        }
+        return null;
+    }
+
+}

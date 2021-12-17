@@ -15,6 +15,6 @@ public interface ReviewRepository extends CrudRepository <Review,Long> {
     public List<Review> findAll();
     public Review findById(long id);
 
-    @Query("select p.reviews from Product p where p.id = :id")
+    @Query("select p.revews from Product p where p.id = :id")
     public List<Review> findReviewByProduct(@Param("id") long id);
 }

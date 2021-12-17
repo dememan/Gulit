@@ -14,13 +14,11 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-
     String title;
     String descripton;
     @ManyToOne
     Product product;
     @ManyToOne
     User user;
-
 }
 

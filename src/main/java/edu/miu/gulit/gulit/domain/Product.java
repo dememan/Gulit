@@ -3,6 +3,7 @@ package edu.miu.gulit.gulit.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 //import javax.validation.constraints.*;
@@ -49,5 +50,11 @@ public class Product {
     private List<ProductPhoto> images;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "product")
+    private  List<Review> revews;
+    @ManyToOne
+    private Seller seller;
 }

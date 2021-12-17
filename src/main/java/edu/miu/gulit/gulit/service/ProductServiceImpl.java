@@ -1,9 +1,6 @@
 package edu.miu.gulit.gulit.service;
 
-import edu.miu.gulit.gulit.domain.OrderItem;
-import edu.miu.gulit.gulit.domain.Product;
-import edu.miu.gulit.gulit.domain.ProductPhoto;
-import edu.miu.gulit.gulit.domain.UserOrder;
+import edu.miu.gulit.gulit.domain.*;
 import edu.miu.gulit.gulit.repository.ProductRepository;
 import edu.miu.gulit.gulit.repository.UserOrderRepository;
 import org.modelmapper.ModelMapper;
@@ -21,6 +18,11 @@ public class ProductServiceImpl implements ProductService{
     ModelMapper mapper;
     @Autowired
     UserOrderRepository orderRepository;
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    SellerService sellerService;
 
     @Autowired
     public ProductServiceImpl(ProductRepository repository) {
@@ -29,33 +31,29 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product save(Product product) {
+
         if(repository.existsById(product.getId())) {
             System.out.println("Product already registered");
             return null;
         }
+       product.setSeller(sellerService.loadSellerByName(userService.getCurrentUser().getUsername()).get());
+       System.out.println(userService.getCurrentUser().getUsername());
        return repository.save(product);
     }
-
     @Override
     public Product update(Product product, long id) {
         product.setId(id);
         return repository.save(product);
     }
-
     @Override
     public List<Product> findAll() {
         if (repository.findAll()==null) return  null;
-
        return repository.findAll();
     }
-
-
-
     @Override
     public Product findById(long id) {
         return repository.findById(id).orElse(null);
     }
-
     @Override
     public void deleteById(long id) {
     List<OrderItem> orderItems = findById(id).getOrderItems();

@@ -27,17 +27,13 @@ public class UserOrder {
     @OneToOne
     @JoinColumn(name = "shipping_address_id")
     private UserAddress shippingAddress;
-
     private OrderStatus orderStatus;
-
     @OneToOne
     @JoinColumn(name = "billing_address_id")
     private UserAddress billingAddress;
-
     @ManyToOne
     @JoinColumn(name = "buyer_id")
     private Buyer buyer;
-
     @OneToMany
     private List<OrderItem> orderItems;
 }

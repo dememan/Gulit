@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,8 @@ public class UserOrderServiceImpl implements UserOrderService{
     UserOrderRepository orderRepository;
     @Autowired
    BuyerService buyerService ;
-
+    @Autowired
+    UserService userService;
     @Override
     public UserOrder findById(long id) {
         return orderRepository.findById(id);
@@ -38,8 +40,12 @@ public class UserOrderServiceImpl implements UserOrderService{
     }
 
     @Override
-    public UserOrder save(UserOrder data) {
-        return orderRepository.save(data);
+    public UserOrder save(UserOrder order) {
+
+        order.setOrderDateTime(LocalDateTime.now());
+        order.setBuyer(buyerService.getBuyerByUsername(userService.getCurrentUser().getUsername()));
+        System.out.println(order);
+        return orderRepository.save(order);
     }
     @Override
     public UserOrder update(UserOrder order, long id) {
@@ -51,7 +57,6 @@ public class UserOrderServiceImpl implements UserOrderService{
     public void deleteById(long id) {
         orderRepository.deleteById(id);
     }
-
     @Override
     public UserOrder deliveredOrder(String userName, long orderId) {
         Buyer buyer =buyerService.getBuyerByUsername(userName);

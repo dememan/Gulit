@@ -7,40 +7,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RequestMapping("/reviews")
+@CrossOrigin()
+@RestController
+@RequestMapping("/products/{id}/reviews")
 public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-    @GetMapping
+    @GetMapping()
     public List<Review> findAll() {
         return reviewService.findAll();
     }
-
-    @GetMapping("{id}")
-    public Review findById(@PathVariable("id") long id) {
+    @GetMapping("/{reviewId}")
+    public Review findById(@PathVariable("reviewId") long id) {
         return reviewService.findById(id);
     }
-
     @PostMapping("/add")
     public void addReview(@RequestBody Review review) {
         reviewService.addReview(review);
     }
-
-    @PostMapping("{id}/delete")
-    public void deleteReviewById(@PathVariable("id") long id) {
+    @PostMapping("/{reviewId}/delete")
+    public void deleteReviewById(@PathVariable("reviewId") long id) {
         reviewService.deleteReviewById(id);
     }
-
-    @GetMapping({"{id}/product"})
+    @GetMapping({"/idd"})
     public List<Review> findReviewByProduct(@RequestBody Product product) {
-
         return reviewService.findReviewByProduct(product);
     }
-
-    @PutMapping("{id}")
-    public void updateReview(@PathVariable("id")long id) {
+    @PutMapping("/{pid}")
+    public void updateReview(@PathVariable("pid")long id) {
         reviewService.updateReview(id);
     }
 }
-
