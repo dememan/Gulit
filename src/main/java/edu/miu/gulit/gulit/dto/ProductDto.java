@@ -4,9 +4,7 @@ import edu.miu.gulit.gulit.domain.Brand;
 import edu.miu.gulit.gulit.domain.Category;
 import edu.miu.gulit.gulit.domain.OrderItem;
 import edu.miu.gulit.gulit.domain.ProductPhoto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.validation.constraints.Min;
@@ -15,7 +13,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
-@Data
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto extends RepresentationModel<ProductDto> implements Serializable {
