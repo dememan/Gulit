@@ -1,2 +1,2 @@
 # Gulit
-#front-end : https://github.com/dememan/Gulit-Online-shopping-frontend
+front-end : https://github.com/dememan/Gulit-Online-shopping-frontend
